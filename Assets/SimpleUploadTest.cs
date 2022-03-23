@@ -28,6 +28,7 @@ public class SimpleUploadTest : MonoBehaviour
 
         loginButton.onClick.AddListener(Login);
         takeSnapButton.onClick.AddListener(TakeShot);
+        takeSnapButton.gameObject.SetActive(false);
     }
 
     public void Login()
@@ -90,6 +91,11 @@ public class SimpleUploadTest : MonoBehaviour
         else if (!FB.IsLoggedIn || result.Cancelled)
         {
             Debug.LogError("[FBManager] LoginAuthCallback - Cancelled");
+        }
+        else
+        {
+            takeSnapButton.gameObject.SetActive(true);
+            path.text = "Logged in";
         }
     }
 
